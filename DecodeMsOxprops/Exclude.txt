@@ -1,0 +1,7 @@
+﻿NUM / 374
+[MS-OXPROPS] - v20171013
+Exchange Server Protocols Master Property List
+Copyright © 2017 Microsoft Corporation
+Release: October 13, 2017
+
+
