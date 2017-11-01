@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="LEML, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\LEML.0.2.0\lib\net40\LEML.dll</HintPath>
@@ -63,6 +66,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App.ico" />
     <Content Include="Usage.txt" />
   </ItemGroup>
   <ItemGroup>
