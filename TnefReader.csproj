@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LEML, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\LEML.0.1.0\lib\net40\LEML.dll</HintPath>
+    <Reference Include="LEML, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\LEML.0.2.0\lib\net40\LEML.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LibFileNameSanitizer, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
