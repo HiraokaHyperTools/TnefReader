@@ -1,4 +1,4 @@
-﻿using Kaizenc.LEML;
+﻿using kenjiuno.LEML;
 using LibFileNameSanitizer;
 using System;
 using System.Collections.Generic;
@@ -49,7 +49,10 @@ namespace TnefReader {
             else if (string.Compare(Path.GetFileName(filePath), "winmail.dat", true) == 0) {
                 using (var si = File.OpenRead(filePath)) {
                     var tnef = new TNEFReader(si);
-                    var walker = new TnefWalker(tnef);
+                    var walker = new TnefWalker(tnef, (fileName, rawData)=> {
+                        File.WriteAllBytes(Path.Combine(tempDir, FileNameSanitizer.forFileName(fileName)), rawData);
+                        nFilesWritten++;
+                    });
                     walker.Walk(tempDir);
                 }
             }
@@ -60,17 +63,19 @@ namespace TnefReader {
             private byte[] rawData;
             private TNEFReader tnef;
             private string tempDir;
+            private Action<string, byte[]> receiveFileNameAndRawData;
 
             private void Flush() {
                 if (fileName != null && rawData != null) {
-                    File.WriteAllBytes(Path.Combine(tempDir, FileNameSanitizer.forFileName(fileName)), rawData);
+                    receiveFileNameAndRawData?.Invoke(fileName, rawData);
                 }
                 fileName = null;
                 rawData = null;
             }
 
-            public TnefWalker(TNEFReader tnef) {
+            public TnefWalker(TNEFReader tnef, Action<string, byte[]> receiveFileNameAndRawData) {
                 this.tnef = tnef;
+                this.receiveFileNameAndRawData = receiveFileNameAndRawData;
             }
 
             internal void Walk(string tempDir) {
